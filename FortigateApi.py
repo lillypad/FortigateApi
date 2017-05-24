@@ -38,11 +38,10 @@ class Fortigate:
 
         print 'login status:', self.r.status_code
         #print 'cookie:', self.s.cookies['ccsrftoken']
-
-        for cookie in self.s.cookies:
-            if cookie.name == 'ccsrftoken':
-                csrftoken = cookie.value[1:-1]
-                self.s.headers.update({'X-CSRFTOKEN': csrftoken})
+	
+	# Dont Commit as you can modify all the requests calls to include cookies=cookies
+	# Should you don't really need the special ccsrftoken header
+	cookies = dict(self.r.cookies)
         
 
     def Logout(self):
